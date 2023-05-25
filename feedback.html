@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Feedback</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        /* body {
+            background-color: aquamarine;
+        } */
+
+        label {
+            padding: 0.2%;
+            border-radius: 10px 10px;
+            border-style: solid;
+            border-width: 0.1%;
+            /* border-color: #3B71CA;
+            color: #3B71CA; */
+            border-color: #292b2c;
+            color: #292b2c;
+            width: 25%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]:checked+label {
+            background-color: black;
+            border-color: black;
+            color: white;
+        }
+
+        button {
+            padding: 0.5%;
+            /* color: #3B71CA; */
+            /* color: #5cb85c;
+            background-color: white; */
+            color: white;
+            /* background-color: #5cb85c; */
+            background-color: black;
+            /* border-style: none; */
+            border-radius: 10px 10px;
+            border-style: solid;
+            border-width: 1%;
+            /* border-color: #3B71CA; */
+            /* border-color: #5cb85c; */
+            border-color: black;
+            width: 25%;
+            cursor: pointer;
+        }
+
+        button:hover {
+            padding: 0.5%;
+            /* color: white; */
+            /* color: #5cb85c; */
+            color: #5cb85c;
+            /* background-color: #3B71CA; */
+            /* background-color: #5cb85c; */
+            background-color: white;
+            /* border-style: none; */
+            border-style: solid;
+            border-width: 1%;
+            /* border-color: #3B71CA; */
+            /* border-color: #5cb85c; */
+            border-color: #5cb85c;
+            width: 25%;
+            cursor: pointer;
+        }
+
+        textarea {
+            padding: 0.5%;
+            color: #292b2c;
+            background-color: white;
+            /* border-style: none; */
+            border-radius: 10px 10px;
+            border-style: solid;
+            border-width: 1%;
+            border-color: #292b2c;
+            width: 25%;
+            cursor: pointer;
+        }
+
+        span {
+            padding: 5%;
+            color: #292b2c;
+            font-size: x-large;
+        }
+
+        /* #5cb85c	 */
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <div class="toggle-buttons">
+            <span>Feedback</span> <br>
+            <input type="radio" name="color" value="Too lengthy" id="option1">
+            <label for="option1">Too lengthy</label> <br>
+
+            <input type="radio" name="color" value="Too complicated" id="option2">
+            <label for="option2">Too complicated</label> <br>
+
+            <input type="radio" name="color" value="Wrong information" id="option3">
+            <label for="option3">Wrong information</label> <br>
+
+            <input type="radio" name="color" value="Didn't answer to my concern" id="option4">
+            <label for="option4">Didn't answer to my concern</label> <br>
+        </div>
+
+        <textarea name="comments" id="comments" rows="5" cols="50"></textarea>
+        <br>
+
+        <button type="submit" onclick="sendFeedback()">Submit</button>
+    </center>
+
+    <script>
+        function sendFeedback() {
+            const radioButton = document.querySelector('input[type="radio"]:checked');
+            const value = (radioButton && radioButton.value) ? radioButton.value : "NA";
+            console.log(value, "--RADIO VALUE--")
+
+            const textArea = document.querySelector('textarea');
+            const feedback = (textArea && textArea.value) ? textArea.value : "NA"
+            console.log(feedback, "--FEEDBACK VALUE--")
+
+            let feedback_data = {
+                radio: value,
+                feedback: feedback
+            }
+
+
+            window.parent.postMessage(JSON.stringify({
+                event_code: "ym-client-event",
+                data: JSON.stringify({
+                    event: {
+                        code: "web-feedback",
+                        data: feedback_data
+                    }
+                })
+            }), "*");
+
+            console.log(JSON.stringify({
+                event_code: "ym-client-event",
+                data: JSON.stringify({
+                    event: {
+                        code: "web-feedback",
+                        data: feedback_data
+                    }
+                })
+            }));
+
+        }
+    </script>
+
+</body>
+
+</html>
