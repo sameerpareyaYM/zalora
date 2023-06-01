@@ -15,7 +15,7 @@
             padding: 0.2%;
             border-radius: 10px 10px;
             border-style: solid;
-            border-width: 0.1%;
+            border-width: 1px;
             /* border-color: #3B71CA;
             color: #3B71CA; */
             border-color: #292b2c;
@@ -33,6 +33,12 @@
             color: white;
         }
 
+        label:hover {
+            background-color: black;
+            border-color: black;
+            color: white;
+        }
+
         button {
             padding: 0.5%;
             /* color: #3B71CA; */
@@ -44,12 +50,14 @@
             /* border-style: none; */
             border-radius: 10px 10px;
             border-style: solid;
-            border-width: 1%;
+            border-width: 1px;
             /* border-color: #3B71CA; */
             /* border-color: #5cb85c; */
             border-color: black;
             width: 100%;
+            height: max-content;
             cursor: pointer;
+            font-size: x-large;
         }
 
         button:hover {
@@ -62,12 +70,14 @@
             background-color: white;
             /* border-style: none; */
             border-style: solid;
-            border-width: 1%;
+            border-width: 1px;
             /* border-color: #3B71CA; */
             /* border-color: #5cb85c; */
             border-color: #5cb85c;
             width: 100%;
+            height: max-content;
             cursor: pointer;
+            font-size: x-large;
         }
 
         textarea {
@@ -77,14 +87,14 @@
             /* border-style: none; */
             border-radius: 10px 10px;
             border-style: solid;
-            border-width: 1%;
+            border-width: 1px;
             border-color: #292b2c;
             width: 100%;
             cursor: pointer;
         }
 
         span {
-            padding: 5%;
+            /* padding: 5%; */
             color: #292b2c;
             font-size: x-large;
         }
@@ -95,9 +105,9 @@
 
 <body>
 
+    <span>Feedback</span> <br>
     <center>
         <div class="toggle-buttons">
-            <span>Feedback</span> <br>
             <input type="radio" name="color" value="Too lengthy" id="option1">
             <label for="option1">Too lengthy</label> <br>
 
